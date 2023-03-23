@@ -52,7 +52,7 @@ const resolvers = {
             }
             throw new AuthenticationError('Please log in to use this feature.');
         },
-        deleteBook: async (parent,args, context) => {
+        removeBook: async (parent,args, context) => {
             if (context.user) {
                 const updateUser = await User
                     .findByIdAndUpdate(

@@ -52,12 +52,12 @@ const resolvers = {
             }
             throw new AuthenticationError('Please log in to use this feature.');
         },
-        removeBook: async (parent,args, context) => {
+        removeBook: async (parent,{bookId}, context) => {
             if (context.user) {
                 const updateUser = await User
                     .findByIdAndUpdate(
                         {_id: context.user._id},
-                        {$pull: {savedBooks: args}},
+                        {$pull: {savedBooks: {bookId}}},
                         {new: true}
                     )
                 return updateUser;
